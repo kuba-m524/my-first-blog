@@ -1,12 +1,25 @@
 <html>
-    <head>
-        <title>Django Girls blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Django Girls Blog</a></h1>
-        </div>
-
+  <head>
+    <title>Django Girls blog</title>
+  </head>
+  <body>
+    <div>
+      <h1><a href="/">Django Girls Blog</a></h1>
+    </div>
+    <!-- Wersja 3 - ostateczna, wszystko co jest pomiędzy for a endfor zostanie powtórzone dla każdego obiektu z listy -->
+    {% for post in posts %}
+    <div>
+      <p>published: {{ post.published_date }}</p>
+      <h2><a href="">{{ post.title }}</a></h2>
+      <p>{{ post.text|linebreaksbr }}</p>
+      <!-- |linebreaksbr przepuszcza wpisy przez filtr, który zamienia znaczniki
+      nowej linii na akapity -->
+    </div>
+    {% endfor %}
+    <!-- Wersja 2 
+        {% for post in posts %} {{ post }} {% endfor %} 
+    -->
+    <!-- Wersja 1 
         <div>
             <p>published: 14.06.2014, 12:14</p>
             <h2><a href="">My first post</a></h2>
@@ -17,6 +30,7 @@
             <p>published: 14.06.2014, 12:14</p>
             <h2><a href="">My second post</a></h2>
             <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
-        </div>
-    </body>
+        </div> 
+    -->
+  </body>
 </html>
