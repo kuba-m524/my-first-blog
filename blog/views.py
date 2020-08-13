@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Post  # dołączamy nasz model, kropka oznacza bieżący katalog lub bieżącą aplikację - views.py i models.py znajdują się w tym samym katalogu, dzięki czemu możemy użyć kropki . i nazwy pliku bez .py
 
@@ -12,3 +12,8 @@ def post_list(request):  # funkcja post_list - widok, pobierająca request
     # Ostatni parametr, który wygląda tak: {} jest miejscem, w którym możemy dodać parę rzeczy do wykorzystania w szablonie.
     # zwraca wartość uzyskaną dzięki wywołaniu funkcji render, która wyrenderuje (złoży w całość) nasz szablon blog/post_list.html
     return render(request, 'blog/post_list.html', {'posts': posts})
+
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'blog/post_detail.html', {'post': post})

@@ -1,25 +1,62 @@
-<html>
+{% extends 'blog/base.html' %} {% block content %} {% for post in posts %}
+<div class="post">
+  <div class="date">
+    {{ post.published_date }}
+  </div>
+  <!-- Używamy tagów szablonu Django, takiego który generuje dla nas adres URL!
+  Fragment post_detail oznacza, że Django będzie oczekiwał URL w blog/urls.py o nazwie name=post_detail
+  pk=post.pk jest skrótem od primary key (klucz podstawowy), który jest unikalną nazwą dla każdego rekordu bazy danych, ponieważ nie ustaliliśmy, czym jest klucz podstawowy w naszym modelu Post, Django stworzyło taki klucz dla nas - standardowo liczba (1,2,3 itd.)
+  to utworzone pole widnieje pod nazwą pk do każdego naszego posta
+  do tego pola dostać możemy się poprzez wpisanie post.pk-->
+  <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+  <p>{{ post.text|linebreaksbr }}</p>
+</div>
+{% endfor %} {% endblock %}
+<!-- <!DOCTYPE html>
+{% load static %} -->
+<!-- ładujemy pliki statyczne -->
+<!-- <html>
   <head>
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}" />
+    <link
+      href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext"
+      rel="stylesheet"
+      type="text/css"
+    />
     <title>Django Girls blog</title>
-  </head>
-  <body>
-    <div>
+  </head> -->
+<!-- <body>
+    <div class="page-header">
       <h1><a href="/">Django Girls Blog</a></h1>
-    </div>
-    <!-- Wersja 3 - ostateczna, wszystko co jest pomiędzy for a endfor zostanie powtórzone dla każdego obiektu z listy -->
-    {% for post in posts %}
-    <div>
-      <p>published: {{ post.published_date }}</p>
-      <h2><a href="">{{ post.title }}</a></h2>
-      <p>{{ post.text|linebreaksbr }}</p>
-      <!-- |linebreaksbr przepuszcza wpisy przez filtr, który zamienia znaczniki
-      nowej linii na akapity -->
-    </div>
-    {% endfor %}
-    <!-- Wersja 2 
+    </div> -->
+<!-- Wersja 3 - ostateczna, wszystko co jest pomiędzy for a endfor zostanie powtórzone dla każdego obiektu z listy -->
+<!-- <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          {% for post in posts %}
+          <div class="post">
+            <div class="date">
+              <p>published: {{ post.published_date }}</p>
+            </div>
+            <h2><a href="">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div> -->
+<!-- Wersja 2 
         {% for post in posts %} {{ post }} {% endfor %} 
     -->
-    <!-- Wersja 1 
+<!-- Wersja 1 
         <div>
             <p>published: 14.06.2014, 12:14</p>
             <h2><a href="">My first post</a></h2>
@@ -32,5 +69,5 @@
             <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
         </div> 
     -->
-  </body>
-</html>
+<!-- </body>
+</html> -->

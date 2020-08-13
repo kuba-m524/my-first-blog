@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %} {% block content %}
+<!-- W bloku content chcemy wyświetlić datę opublikowania wpisu (o ile istnieje), tytuł oraz treść -->
+<div class="post">
+  {% if post.published_date %}
+  <!-- sprawdzamy czy published_date posta nie jest posta -->
+  <div class="date">
+    {{ post.published_date }}
+  </div>
+  {% endif %}
+  <h2>{{ post.title }}</h2>
+  <p>{{ post.text|linebreaksbr }}</p>
+</div>
+{% endblock %}
