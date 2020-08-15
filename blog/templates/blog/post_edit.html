@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+<!-- Rozszerzamy base.html -->
+{% block content %}
+<h2>New post</h2>
+<form method="POST" class="post-form">
+  <!-- Zabezpieczenie formularza, wymagane -->
+  {% csrf_token %}
+  <!-- Wyświetlenie formularza -->
+  {{ form.as_p }}
+  <button type="submit" class="save btn btn-default">Save</button>
+</form>
+{% endblock %}
+<!-- Gdy prześlemy formularz, wracamy do tego samego widoku, ale tym razem mamy nieco więcej danych w zapytaniu (zmiennej
+request) - a dokładnie w request.POST -->

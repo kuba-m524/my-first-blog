@@ -13,4 +13,6 @@ urlpatterns = [
     # To wszystko oznacza, że gdy wpiszemy w przeglądarce adres:
     # http://127.0.0.1:8000/post/5/
     # Django zrozumie, że potrzebujemy widoku zwanego post_detail i przekaże informację, że pk jest równe 5 temu widokowi
+    path('post/new', views.post_new, name='post_new'),
+    path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
 ]

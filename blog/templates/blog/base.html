@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 {% load static %}
 <!-- ładujemy pliki statyczne -->
 <html>
   <head>
+    <title>Django Girls blog</title>
     <link
       rel="stylesheet"
       href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
@@ -17,10 +17,17 @@
       rel="stylesheet"
       type="text/css"
     />
-    <title>Django Girls blog</title>
   </head>
   <body>
     <div class="page-header">
+      <!-- Ten if spowoduje, że link zostanie wysłany do przeglądarki tylko wtedy, kiedy użytkownik chcący wyświetlić tę stronę jest zalogowany -->
+      <!-- Sposób ten nie chroni od tworzenia wpisów w 100%, ale jest to dobry pierwszy krok, więcej o zagadnieniu bezpieczeństwa dowiedzieć będzie można się z rozszerzenia do tego kursu django girls -->
+      {% if user.is_authenticated %}
+      <a href="{% url 'post_new' %}" class="top-menu"
+        ><span class="glyphicon glyphicon-plus"></span
+      ></a>
+      {% endif %}
+      <!-- Używamy klasy glyphicon glyphicon-plus, która jest dostarczana przez motyw z bootstrapa, wyświetli nam ona znak plus -->
       <h1><a href="/">Django Girls Blog</a></h1>
     </div>
     <div class="content container">
